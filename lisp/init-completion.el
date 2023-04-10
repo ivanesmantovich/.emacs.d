@@ -2,24 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Emacs 29 will ship with support for a parser-library called tree-sitter, and will actually have in-tree support for TypeScript! So now you can just use the provided typescript-ts-mode and get better support for TypeScript than typescript.el ever provided. This new mode also supports TSX.
-;; NOTE: use M-x shell or ansi-term for nvm
-(use-package typescript-mode
-  :mode "\\.ts\\'"
-  :config
-  (setq typescript-indent-level 4))
-
-(use-package go-mode)
-
-;; Works for Emacs 29
-;; (defun my-eglot-organize-imports () (interactive)
-;; 	   (eglot-code-actions nil nil "source.organizeImports" t))
-;; (add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
-;; (add-hook 'before-save-hook 'eglot-format-buffer)
-
 (use-package eglot
   :hook
-  ((go-mode html-mode css-mode typescript-mode) . eglot-ensure))
+  ((go-mode html-mode css-mode typescript-mode python-mode) . eglot-ensure))
 
 ;; TODO: Try icomplete-vertical-mode later
 (use-package vertico
@@ -30,9 +15,9 @@
 
 (use-package orderless
   :init
-  (setq completion-styles '(orderless basic)
+  (setq completion-styles '(orderless)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package marginalia
   :after vertico
@@ -71,7 +56,7 @@
          ("M-y" . consult-yank-pop)
          ;; M-g (go-to) bindings
          ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flycheck)
+         ("M-g f" . consult-flymake)
          ("M-g g" . consult-goto-line)
          ("M-g M-g" . consult-goto-line)
          ("M-g o" . consult-outline)

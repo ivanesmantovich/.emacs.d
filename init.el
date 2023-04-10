@@ -39,7 +39,7 @@
 ;; Saveplace remembers the location in a file when saving files
 (use-package saveplace
   :config
-  (setq-default save-place t))
+  (save-place-mode))
 
 (use-package savehist
   :config
@@ -52,16 +52,9 @@
         recentf-max-menu-items 15)
   (recentf-mode))
 
-;; TODO: Setup PATH and all the variables in .bash_profile
-;; https://github.com/purcell/exec-path-from-shell#usage
-;; EXAMPLE:
-;; https://github.com/LukeSmithxyz/voidrice/blob/master/.config/shell/profile
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
-    ;; TODO: Может быть удалить строчки с NVM? Для него я использую shell...
-    ;; (dolist (shell-var '("NVM_DIR"))
-    ;;   (add-to-list 'exec-path-from-shell-variables shell-var))
     (exec-path-from-shell-initialize)))
 
 (require 'uniquify)
@@ -69,9 +62,13 @@
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)
 
-;; NOTE: Try built-in doc-view-mode
-;; https://emacs.stackexchange.com/a/64381
-(use-package pdf-tools)
+(use-package pdf-tools
+  :hook (doc-view-mode . pdf-view-mode))
+
+(use-package pdf-view-restore
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-view-restore-mode))
 
 (use-package avy)
 
@@ -102,17 +99,23 @@
   (add-hook 'before-save-hook #'whitespace-cleanup)
   (setq whitespace-style '(face tabs trailing)))
 
+(require 'init-python)
+(require 'init-javascript)
+(require 'init-go)
+
+(require 'init-org)
 (require 'init-parenthesis)
 (require 'init-git)
 (require 'init-completion)
-(require 'init-diagnostics)
+(require 'init-flymake)
 (require 'init-helper-functions)
 (require 'init-rebinds)
-(require 'init-modeline)
 (require 'init-gui)
+(require 'init-modeline)
 (require 'init-etc)
 
-(require 'magicwaterdrop-theme)
+
+(require 'waterframe-theme)
 
 ;; Dial the GC back down after startup
 (setq gc-cons-threshold (* 2 1000 1000))

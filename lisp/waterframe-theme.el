@@ -1,7 +1,7 @@
-;;; magicwaterdrop-theme.el --- Cute Emacs theme  -*- lexical-binding: t -*-
+;;; waterframe-theme.el --- Cute Emacs theme for magicians  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(deftheme magicwaterdrop "Add more magic to your life.")
+(deftheme waterframe "Add more magic to your life.")
 
 ;; https://coolors.co/ffffff
 (let* ((white "#FFFFFF")
@@ -17,14 +17,12 @@
        (danger "#FA00D6"))
 
 
-
-
-  (custom-theme-set-faces 'magicwaterdrop
+  (custom-theme-set-faces 'waterframe
                           ;; Best clean fonts: SF Mono, Mononoki, Menlo / Meslo
                           `(default ((t (:font "SF Mono" :height 180))))
                           `(fringe ((t (:background ,white :foreground ,black))))
                           `(region ((t (:background ,magic2 :foreground ,black))))
-                          `(highlight ((t (:background ,emacs :weight bold))))
+                          `(highlight ((t (:background ,magic1 :weight bold))))
                           `(lazy-highlight ((t (:background ,magic2 :weight bold))))
                           `(isearch ((t (:background ,magic1 :foreground ,black))))
 
@@ -91,6 +89,12 @@
                           `(flycheck-fringe-warning ((t (:foreground ,magic1))))
                           `(flycheck-warning ((t (:underline (:style line :color ,magic1)))))
 
+                          ;; corfu
+                          `(corfu-current ((t (:background ,magic1))))
+
+                          ;; orderless
+                          `(orderless-match-face-0 ((t (:foreground ,emacs))))
+
                           ;; consult
                           `(consult-file ((t (:foreground ,black))))
 
@@ -99,7 +103,7 @@
 
 
 
-(provide-theme 'magicwaterdrop)
-(enable-theme 'magicwaterdrop)
-(provide 'magicwaterdrop-theme)
-;;; magicwaterdrop-theme.el ends here
+(provide-theme 'waterframe)
+(enable-theme 'waterframe)
+(provide 'waterframe-theme)
+;;; waterframe-theme.el ends here

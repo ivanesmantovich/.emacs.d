@@ -20,6 +20,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; Set RU as secondary language
+(setq default-input-method "russian-computer")
+
 ;; Revert buffers when the underlying file has changed
 (global-auto-revert-mode)
 (setq auto-revert-verbose nil)

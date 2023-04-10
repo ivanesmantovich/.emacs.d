@@ -11,8 +11,8 @@
                               whitespace-mode
                               rainbow-mode
                               rainbow-delimiters-mode
-                              flycheck-mode
-                              paredit-mode))
+                              paredit-mode
+                              blacken-mode))
   (diminish mode-to-diminish)))
 
 ;; ;; Format time (March 28, Friday. 14:00)
@@ -25,10 +25,11 @@
 (setq mode-line-end-spaces
       (list (propertize " " 'display '(space :align-to (- right 34)))
             'mode-line-position
-            (propertize (eval 'display-time-string) 'face 'bold)))
+            'display-time-string))
 
 (setq-default mode-line-format
               '(" %& "
+                current-input-method-title " "
                 mode-line-buffer-identification " "
                 (vc-mode vc-mode) " "
                 mode-line-modes
